@@ -75,6 +75,7 @@
     "axios": ">=1.14.0",
     "@typescript-eslint/parser": {
       "minimatch": "^9.0.7"
-    }
+    },
+    "serialize-javascript": "^7.0.5"
   }
 }
