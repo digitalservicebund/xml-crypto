@@ -72,6 +72,9 @@
   },
   "overrides": {
     "lodash": ">=4.17.23",
-    "axios": ">=1.14.0"
+    "axios": ">=1.14.0",
+    "@typescript-eslint/parser": {
+      "minimatch": "^9.0.7"
+    }
   }
 }
