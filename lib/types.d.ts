@@ -14,6 +14,20 @@ export interface GetKeyInfoContentArgs {
     prefix?: string | null;
 }
 /**
+ * Object attributes as defined in XMLDSig spec and are emitted verbatim
+ * @see https://www.w3.org/TR/xmldsig-core/#sec-Object
+ */
+export interface ObjectAttributes {
+    /** Optional ID attribute */
+    Id?: string;
+    /** Optional MIME type attribute */
+    MimeType?: string;
+    /** Optional encoding attribute */
+    Encoding?: string;
+    /** Any additional custom attributes */
+    [key: string]: string | undefined;
+}
+/**
  * Options for the SignedXml constructor.
  */
 export interface SignedXmlOptions {
@@ -28,6 +42,10 @@ export interface SignedXmlOptions {
     keyInfoAttributes?: Record<string, string>;
     getKeyInfoContent?(args?: GetKeyInfoContentArgs): string | null;
     getCertFromKeyInfo?(keyInfo?: Node | null): string | null;
+    objects?: Array<{
+        content: string;
+        attributes?: ObjectAttributes;
+    }>;
 }
 export interface NamespacePrefix {
     prefix: string;
@@ -77,6 +95,8 @@ export interface Reference {
     digestValue?: unknown;
     inclusiveNamespacesPrefixList: string[];
     isEmptyUri: boolean;
+    id?: string;
+    type?: string;
     ancestorNamespaces?: NamespacePrefix[];
     validationError?: Error;
     getValidatedNode(xpathSelector?: string): Node | null;
